@@ -3,17 +3,18 @@ module.exports = function(sequelize, DataTypes){
       Name: {
           filed: "name",
           type: DataTypes.STRING(50),
-          unique: true,
           allowNull: false
       },
       Prvider : {
         filed: "prvider",
         type: DataTypes.STRING(50),
+        unique: true,
         allowNull: false
       },
       PrviderId : {
         filed: "prviderId",
         type: DataTypes.STRING(50),
+        unique: true,
         allowNull: false
       },
       Password: {
