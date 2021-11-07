@@ -11,7 +11,7 @@ module.exports = async (req, res) => {
     };
     try {
         const results = await models.StretchCategory.findOne({
-            attributes: ['title', 'valid'],
+            attributes: ['title'],
             where: {
                 id: req.body.id
             }
@@ -35,17 +35,11 @@ module.exports = async (req, res) => {
             return;
         };
 
-        await models.StretchCategory.update({
-            valid: false
-        }, {
-            where: {
-                id: req.body.id
-            }
-        });
         res.status(200).json({
             "result": "OK",
             "resultcode": "0",
-            "message": ""
+            "message": "",
+            "results": results
         });
         return;
     } catch (error) {
