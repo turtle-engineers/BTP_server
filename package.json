@@ -1,12 +1,19 @@
 {
-  "name": "btp_server",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "btp-server",
+  "version": "0.0.0",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node ./bin/www"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "dependencies": {
+    "cookie-parser": "~1.4.4",
+    "debug": "^4.3.2",
+    "express": "^4.17.1",
+    "http-errors": "^1.8.0",
+    "mariadb": "^2.5.5",
+    "morgan": "^1.10.0",
+    "pug": "^3.0.2",
+    "sequelize": "^6.9.0",
+    "sequelize-cli": "^6.3.0"
+  }
 }
