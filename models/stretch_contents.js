@@ -1,7 +1,7 @@
 const models = require("./index.js");
 
 module.exports = (sequelize, DataTypes) => {
-    const StretchCategory = sequelize.define('StretchCategory', {
+    const StretchContents = sequelize.define('StretchContents', {
         // Model attributes are defined here
         id: {
             type: DataTypes.INTEGER,
@@ -16,18 +16,25 @@ module.exports = (sequelize, DataTypes) => {
         },
         valid: {
             type: DataTypes.BOOLEAN,
-            allowNull: false,
-            defaultValue: true
+            allowNull: false
+        },
+        playTime: {
+            type: DataTypes.STRING(4),
+            allowNull: false
+        },
+        description: {
+            type: DataTypes.STRING(400),
+            allowNull: false
         }
     }, {
         // Other model options go here
         underscored: true,  // createdAt -> created_at (model to column name ONLY)
-        tableName: 'stretch_category'
+        tableName: 'stretch_contents'
     });
 
-    StretchCategory.associate = function (models) {
-        StretchCategory.hasMany(models.StretchContents);
+    StretchContents.associate = function (models) {
+        StretchContents.belongsTo(models.StretchCategory);
     }
 
-    return StretchCategory;
+    return StretchContents;
 }

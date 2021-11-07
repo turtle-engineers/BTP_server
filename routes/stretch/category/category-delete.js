@@ -13,18 +13,17 @@ module.exports = async (req, res) => {
     }
     try {
         const results = await models.StretchCategory.findOne({
-            attributes: ['valid'],
+            attributes: ['title'],
             where: {
-                id: req.body.id
+                id: req.body.id,
+                valid: true
             }
         });
-        if(results.valid) {
-            try {
-
-            } catch (error) {
-
-            }
-        }
+        res.status(200).json({
+            "result": "OK",
+            "resultCode": "0",
+            "message": ""
+        })
     } catch (error) {
         res.status(200).json({
             "result": "FAIL",
