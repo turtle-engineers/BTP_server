@@ -1,7 +1,13 @@
 # BTP_server
 node + express server
 
-
+**211107**
+>서버 구동 시 pm2 를 사용합니다.   
+>package.json 파일 내 "scripts"에서 해당 설정을 확인할 수 있습니다.   
+>구동 시 pm2가 없을 경우 아래 명령어로 설치를 진행합니다.
+>```
+>>  npm install pm2 -g
+>```
 ## Server Start
 BTP_server>*npm start*
 
