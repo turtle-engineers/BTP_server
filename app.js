@@ -7,6 +7,7 @@ const logger = require('morgan');
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const categoryRouter = require('./routes/stretch/category/category');
+const contentsRouter = require('./routes/stretch/contents/contents');
 
 const app = express();
 
@@ -30,9 +31,11 @@ models.sequelize.sync().then( () => {
   console.log(error);
 });
 
+// ***** ALL ROUTERS ***** //
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/stretch/category', categoryRouter);
+app.use('/stretch/contents', contentsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

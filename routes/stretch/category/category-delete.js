@@ -4,7 +4,7 @@ module.exports = async (req, res) => {
     if(!req.body.id) {
         res.status(200).json({
             "result": "FAIL",
-            "resultcode": "-1",
+            "resultcode": "-2",
             "message": "카테고리 ID가 필요합니다."
         });
         return;
@@ -20,7 +20,7 @@ module.exports = async (req, res) => {
         if(results === null) {
             res.status(200).json({
                 "result": "FAIL",
-                "resultcode": "-2",
+                "resultcode": "-3",
                 "message": "해당 카테고리를 찾을 수 없습니다."
             });
             return;
@@ -29,7 +29,7 @@ module.exports = async (req, res) => {
         if(results.valid === false) {
             res.status(200).json({
                 "result": "FAIL",
-                "resultcode": "-3",
+                "resultcode": "-4",
                 "message": "해당 카테고리는 이미 비활성화 상태입니다."
             });
             return;
@@ -51,7 +51,7 @@ module.exports = async (req, res) => {
     } catch (error) {
         res.status(200).json({
             "result": "FAIL",
-            "resultcode": "-3",
+            "resultcode": "-1",
             "message": `데이터베이스에서 오류가 발생하였습니다. (MariaDB Error Code: ${error.original.errno}`
         });
         console.log("LOG: FAIL: Fail to Invalid Category.\n");

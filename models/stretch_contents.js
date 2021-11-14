@@ -33,7 +33,16 @@ module.exports = (sequelize, DataTypes) => {
     });
 
     StretchContents.associate = function (models) {
-        StretchContents.belongsTo(models.StretchCategory);
+        StretchContents.belongsTo(models.StretchCategory, {
+            foreignKey: {
+                allowNull: false
+            },
+            onDelete: 'RESTRICT',
+            onUpdate: 'RESTRICT'
+        });
+        StretchContents.hasMany(models.Bookmark);
+        StretchContents.hasMany(models.MyRoutineContents);
+        StretchContents.hasMany(models.PlayLog);
     }
 
     return StretchContents;
