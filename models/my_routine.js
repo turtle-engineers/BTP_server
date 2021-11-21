@@ -1,7 +1,7 @@
 const models = require("./index.js");
 
 module.exports = (sequelize, DataTypes) => {
-    const StretchCategory = sequelize.define('StretchCategory', {
+    const MyRoutine = sequelize.define('MyRoutine', {
         // Model attributes are defined here
         id: {
             type: DataTypes.INTEGER,
@@ -11,22 +11,23 @@ module.exports = (sequelize, DataTypes) => {
         },
         title: {
             type: DataTypes.STRING(20),
-            allowNull: false,
-            unique: true
-        },
-        valid: {
-            type: DataTypes.BOOLEAN,
-            allowNull: false,
-            defaultValue: true
+            allowNull: false
         }
     }, {
         // Other model options go here
         underscored: true,  // createdAt -> created_at (model to column name ONLY)
-        tableName: 'stretch_category'
+        tableName: 'my_routine'
     });
 
-    StretchCategory.associate = function (models) {
-        StretchCategory.hasMany(models.StretchContents, {
+    MyRoutine.associate = function (models) {
+        MyRoutine.belongsTo(models.User, {
+            foreignKey: {
+                allowNull: false
+            },
+            onDelete: 'RESTRICT',
+            onUpdate: 'RESTRICT'
+        });
+        MyRoutine.hasMany(models.MyRoutineContents, {
             foreignKey: {
                 allowNull: false
             },
@@ -35,5 +36,5 @@ module.exports = (sequelize, DataTypes) => {
         });
     }
 
-    return StretchCategory;
+    return MyRoutine;
 }

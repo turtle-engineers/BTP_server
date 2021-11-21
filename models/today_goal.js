@@ -1,7 +1,7 @@
 const models = require("./index.js");
 
 module.exports = (sequelize, DataTypes) => {
-    const StretchCategory = sequelize.define('StretchCategory', {
+    const TodayGoal = sequelize.define('TodayGoal', {
         // Model attributes are defined here
         id: {
             type: DataTypes.INTEGER,
@@ -11,22 +11,24 @@ module.exports = (sequelize, DataTypes) => {
         },
         title: {
             type: DataTypes.STRING(20),
-            allowNull: false,
-            unique: true
+            allowNull: false
         },
-        valid: {
+        finish: {
             type: DataTypes.BOOLEAN,
-            allowNull: false,
-            defaultValue: true
+            allowNull: false
+        },
+        goaldate: {
+            type: DataTypes.DATE,
+            allowNull: false
         }
     }, {
         // Other model options go here
         underscored: true,  // createdAt -> created_at (model to column name ONLY)
-        tableName: 'stretch_category'
+        tableName: 'today_goal'
     });
 
-    StretchCategory.associate = function (models) {
-        StretchCategory.hasMany(models.StretchContents, {
+    TodayGoal.associate = function (models) {
+        TodayGoal.belongsTo(models.User, {
             foreignKey: {
                 allowNull: false
             },
@@ -35,5 +37,5 @@ module.exports = (sequelize, DataTypes) => {
         });
     }
 
-    return StretchCategory;
+    return TodayGoal;
 }

@@ -2,7 +2,7 @@ const models = require("../../../models");
 const errors = require("../../errors/errors");
 
 module.exports = async (req, res) => {
-    if(!req.query.id) {
+    if(!req.query.cid) {
         res.status(200).json({
             "result": "FAIL",
             "resultcode": "-100",
@@ -10,11 +10,13 @@ module.exports = async (req, res) => {
         });
         return;
     };
+
     try {
-        const results = await models.StretchCategory.findOne({
-            attributes: ['title'],
+        const results = await models.StretchContents.findAll({
+            attributes: ['id', 'title'],
             where: {
-                id: req.query.id
+                StretchCategoryId: req.query.cid,
+                valid: true
             }
         });
 
@@ -22,16 +24,7 @@ module.exports = async (req, res) => {
             res.status(200).json({
                 "result": "FAIL",
                 "resultcode": "-101",
-                "message": "해당 카테고리를 찾을 수 없습니다."
-            });
-            return;
-        };
-
-        if(results.valid === false) {
-            res.status(200).json({
-                "result": "FAIL",
-                "resultcode": "-102",
-                "message": "해당 카테고리는 비활성화 상태입니다."
+                "message": "컨텐츠가 비어있습니다."
             });
             return;
         };
@@ -44,7 +37,7 @@ module.exports = async (req, res) => {
         });
         return;
     } catch (error) {
-        errors(res, error, "카테고리 제목");
+        errors(res, error, "컨텐츠 리스트");
         return;
     };
 };

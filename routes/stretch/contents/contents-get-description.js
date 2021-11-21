@@ -6,13 +6,13 @@ module.exports = async (req, res) => {
         res.status(200).json({
             "result": "FAIL",
             "resultcode": "-100",
-            "message": "카테고리 ID가 필요합니다."
+            "message": "컨텐츠 ID가 필요합니다."
         });
         return;
     };
     try {
-        const results = await models.StretchCategory.findOne({
-            attributes: ['title'],
+        const results = await models.StretchContents.findOne({
+            attributes: ['description'],
             where: {
                 id: req.query.id
             }
@@ -22,7 +22,7 @@ module.exports = async (req, res) => {
             res.status(200).json({
                 "result": "FAIL",
                 "resultcode": "-101",
-                "message": "해당 카테고리를 찾을 수 없습니다."
+                "message": "해당 컨텐츠를 찾을 수 없습니다."
             });
             return;
         };
@@ -31,7 +31,7 @@ module.exports = async (req, res) => {
             res.status(200).json({
                 "result": "FAIL",
                 "resultcode": "-102",
-                "message": "해당 카테고리는 비활성화 상태입니다."
+                "message": "해당 컨텐츠는 비활성화 상태입니다."
             });
             return;
         };
@@ -44,7 +44,7 @@ module.exports = async (req, res) => {
         });
         return;
     } catch (error) {
-        errors(res, error, "카테고리 제목");
+        errors(res, error, "컨텐츠명");
         return;
     };
 };

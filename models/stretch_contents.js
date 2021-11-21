@@ -33,7 +33,34 @@ module.exports = (sequelize, DataTypes) => {
     });
 
     StretchContents.associate = function (models) {
-        StretchContents.belongsTo(models.StretchCategory);
+        StretchContents.belongsTo(models.StretchCategory, {
+            foreignKey: {
+                allowNull: false
+            },
+            onDelete: 'RESTRICT',
+            onUpdate: 'RESTRICT'
+        });
+        StretchContents.hasMany(models.Bookmark, {
+            foreignKey: {
+                allowNull: false
+            },
+            onDelete: 'RESTRICT',
+            onUpdate: 'RESTRICT'
+        });
+        StretchContents.hasMany(models.MyRoutineContents, {
+            foreignKey: {
+                allowNull: false
+            },
+            onDelete: 'RESTRICT',
+            onUpdate: 'RESTRICT'
+        });
+        StretchContents.hasMany(models.PlayLog, {
+            foreignKey: {
+                allowNull: false
+            },
+            onDelete: 'RESTRICT',
+            onUpdate: 'RESTRICT'
+        });
     }
 
     return StretchContents;

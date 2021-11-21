@@ -1,7 +1,7 @@
 const models = require("./index.js");
 
 module.exports = (sequelize, DataTypes) => {
-    const StretchCategory = sequelize.define('StretchCategory', {
+    const ServiceLog = sequelize.define('ServiceLog', {
         // Model attributes are defined here
         id: {
             type: DataTypes.INTEGER,
@@ -9,24 +9,26 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
             autoIncrement: true
         },
-        title: {
-            type: DataTypes.STRING(20),
-            allowNull: false,
-            unique: true
+        pageId: {
+            type: DataTypes.STRING(3),
+            allowNull: false
         },
-        valid: {
-            type: DataTypes.BOOLEAN,
-            allowNull: false,
-            defaultValue: true
+        apiId: {
+            type: DataTypes.STRING(3),
+            allowNull: false
+        },
+        contents: {
+            type: DataTypes.STRING(40),
+            allowNull: false
         }
     }, {
         // Other model options go here
         underscored: true,  // createdAt -> created_at (model to column name ONLY)
-        tableName: 'stretch_category'
+        tableName: 'service_log'
     });
 
-    StretchCategory.associate = function (models) {
-        StretchCategory.hasMany(models.StretchContents, {
+    ServiceLog.associate = function (models) {
+        ServiceLog.belongsTo(models.User, {
             foreignKey: {
                 allowNull: false
             },
@@ -35,5 +37,5 @@ module.exports = (sequelize, DataTypes) => {
         });
     }
 
-    return StretchCategory;
+    return ServiceLog;
 }

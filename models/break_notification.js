@@ -1,7 +1,7 @@
 const models = require("./index.js");
 
 module.exports = (sequelize, DataTypes) => {
-    const StretchCategory = sequelize.define('StretchCategory', {
+    const BreakNotification = sequelize.define('BreakNotification', {
         // Model attributes are defined here
         id: {
             type: DataTypes.INTEGER,
@@ -9,24 +9,26 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
             autoIncrement: true
         },
-        title: {
-            type: DataTypes.STRING(20),
-            allowNull: false,
-            unique: true
+        day: {
+            type: DataTypes.INTEGER,
+            allowNull: false
         },
         valid: {
             type: DataTypes.BOOLEAN,
-            allowNull: false,
-            defaultValue: true
+            allowNull: false
+        },
+        repeatTime: {
+            type: DataTypes.STRING(4),
+            allowNull: false
         }
     }, {
         // Other model options go here
         underscored: true,  // createdAt -> created_at (model to column name ONLY)
-        tableName: 'stretch_category'
+        tableName: 'break_notification'
     });
 
-    StretchCategory.associate = function (models) {
-        StretchCategory.hasMany(models.StretchContents, {
+    BreakNotification.associate = function (models) {
+        BreakNotification.belongsTo(models.User, {
             foreignKey: {
                 allowNull: false
             },
@@ -35,5 +37,5 @@ module.exports = (sequelize, DataTypes) => {
         });
     }
 
-    return StretchCategory;
+    return BreakNotification;
 }

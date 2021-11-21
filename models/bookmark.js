@@ -1,32 +1,29 @@
 const models = require("./index.js");
 
 module.exports = (sequelize, DataTypes) => {
-    const StretchCategory = sequelize.define('StretchCategory', {
+    const Bookmark = sequelize.define('Bookmark', {
         // Model attributes are defined here
         id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
             allowNull: false,
             autoIncrement: true
-        },
-        title: {
-            type: DataTypes.STRING(20),
-            allowNull: false,
-            unique: true
-        },
-        valid: {
-            type: DataTypes.BOOLEAN,
-            allowNull: false,
-            defaultValue: true
         }
     }, {
         // Other model options go here
         underscored: true,  // createdAt -> created_at (model to column name ONLY)
-        tableName: 'stretch_category'
+        tableName: 'bookmark'
     });
 
-    StretchCategory.associate = function (models) {
-        StretchCategory.hasMany(models.StretchContents, {
+    Bookmark.associate = function (models) {
+        Bookmark.belongsTo(models.User, {
+            foreignKey: {
+                allowNull: false
+            },
+            onDelete: 'RESTRICT',
+            onUpdate: 'RESTRICT'
+        });
+        Bookmark.belongsTo(models.StretchContents, {
             foreignKey: {
                 allowNull: false
             },
@@ -35,5 +32,5 @@ module.exports = (sequelize, DataTypes) => {
         });
     }
 
-    return StretchCategory;
+    return Bookmark;
 }
