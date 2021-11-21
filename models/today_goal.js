@@ -28,7 +28,13 @@ module.exports = (sequelize, DataTypes) => {
     });
 
     TodayGoal.associate = function (models) {
-        TodayGoal.belongsTo(models.User);
+        TodayGoal.belongsTo(models.User, {
+            foreignKey: {
+                allowNull: false
+            },
+            onDelete: 'RESTRICT',
+            onUpdate: 'RESTRICT'
+        });
     }
 
     return TodayGoal;

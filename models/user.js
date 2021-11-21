@@ -52,13 +52,55 @@ module.exports = (sequelize, DataTypes) => {
     });
 
     User.associate = function (models) {
-        User.hasMany(models.TodayGoal);
-        User.hasMany(models.Bookmark);
-        User.hasMany(models.MyRoutine);
-        User.hasMany(models.StretchNotification);
-        User.hasMany(models.BreakNotification);
-        User.hasMany(models.PlayLog);
-        User.hasMany(models.ServiceLog);
+        User.hasMany(models.TodayGoal, {
+            foreignKey: {
+                allowNull: false
+            },
+            onDelete: 'RESTRICT',
+            onUpdate: 'RESTRICT'
+        });
+        User.hasMany(models.Bookmark, {
+            foreignKey: {
+                allowNull: false
+            },
+            onDelete: 'RESTRICT',
+            onUpdate: 'RESTRICT'
+        });
+        User.hasMany(models.MyRoutine, {
+            foreignKey: {
+                allowNull: false
+            },
+            onDelete: 'RESTRICT',
+            onUpdate: 'RESTRICT'
+        });
+        User.hasMany(models.StretchNotification, {
+            foreignKey: {
+                allowNull: false
+            },
+            onDelete: 'RESTRICT',
+            onUpdate: 'RESTRICT'
+        });
+        User.hasMany(models.BreakNotification, {
+            foreignKey: {
+                allowNull: false
+            },
+            onDelete: 'RESTRICT',
+            onUpdate: 'RESTRICT'
+        });
+        User.hasMany(models.PlayLog, {
+            foreignKey: {
+                allowNull: false
+            },
+            onDelete: 'RESTRICT',
+            onUpdate: 'RESTRICT'
+        });
+        User.hasMany(models.ServiceLog, {
+            foreignKey: {
+                allowNull: false
+            },
+            onDelete: 'RESTRICT',
+            onUpdate: 'RESTRICT'
+        });
     }
 
     return User;

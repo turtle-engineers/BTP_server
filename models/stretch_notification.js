@@ -32,7 +32,13 @@ module.exports = (sequelize, DataTypes) => {
     });
 
     StretchNotification.associate = function (models) {
-        StretchNotification.belongsTo(models.User);
+        StretchNotification.belongsTo(models.User, {
+            foreignKey: {
+                allowNull: false
+            },
+            onDelete: 'RESTRICT',
+            onUpdate: 'RESTRICT'
+        });
     }
 
     return StretchNotification;

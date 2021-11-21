@@ -28,7 +28,13 @@ module.exports = (sequelize, DataTypes) => {
     });
 
     BreakNotification.associate = function (models) {
-        BreakNotification.belongsTo(models.User);
+        BreakNotification.belongsTo(models.User, {
+            foreignKey: {
+                allowNull: false
+            },
+            onDelete: 'RESTRICT',
+            onUpdate: 'RESTRICT'
+        });
     }
 
     return BreakNotification;

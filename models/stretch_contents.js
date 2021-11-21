@@ -40,9 +40,27 @@ module.exports = (sequelize, DataTypes) => {
             onDelete: 'RESTRICT',
             onUpdate: 'RESTRICT'
         });
-        StretchContents.hasMany(models.Bookmark);
-        StretchContents.hasMany(models.MyRoutineContents);
-        StretchContents.hasMany(models.PlayLog);
+        StretchContents.hasMany(models.Bookmark, {
+            foreignKey: {
+                allowNull: false
+            },
+            onDelete: 'RESTRICT',
+            onUpdate: 'RESTRICT'
+        });
+        StretchContents.hasMany(models.MyRoutineContents, {
+            foreignKey: {
+                allowNull: false
+            },
+            onDelete: 'RESTRICT',
+            onUpdate: 'RESTRICT'
+        });
+        StretchContents.hasMany(models.PlayLog, {
+            foreignKey: {
+                allowNull: false
+            },
+            onDelete: 'RESTRICT',
+            onUpdate: 'RESTRICT'
+        });
     }
 
     return StretchContents;

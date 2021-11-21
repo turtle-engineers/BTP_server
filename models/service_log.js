@@ -28,7 +28,13 @@ module.exports = (sequelize, DataTypes) => {
     });
 
     ServiceLog.associate = function (models) {
-        ServiceLog.belongsTo(models.User);
+        ServiceLog.belongsTo(models.User, {
+            foreignKey: {
+                allowNull: false
+            },
+            onDelete: 'RESTRICT',
+            onUpdate: 'RESTRICT'
+        });
     }
 
     return ServiceLog;

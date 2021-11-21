@@ -24,8 +24,20 @@ module.exports = (sequelize, DataTypes) => {
     });
 
     MyRoutineContents.associate = function (models) {
-        MyRoutineContents.belongsTo(models.MyRoutine);
-        MyRoutineContents.belongsTo(models.StretchContents);
+        MyRoutineContents.belongsTo(models.MyRoutine, {
+            foreignKey: {
+                allowNull: false
+            },
+            onDelete: 'RESTRICT',
+            onUpdate: 'RESTRICT'
+        });
+        MyRoutineContents.belongsTo(models.StretchContents, {
+            foreignKey: {
+                allowNull: false
+            },
+            onDelete: 'RESTRICT',
+            onUpdate: 'RESTRICT'
+        });
     }
 
     return MyRoutineContents;

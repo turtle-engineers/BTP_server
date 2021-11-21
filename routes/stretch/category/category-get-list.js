@@ -1,4 +1,5 @@
 const models = require("../../../models");
+const errors = require("../../errors/errors");
 
 module.exports = async (req, res) => {
     try {
@@ -12,7 +13,7 @@ module.exports = async (req, res) => {
         if(results === null) {
             res.status(200).json({
                 "result": "FAIL",
-                "resultcode": "-2",
+                "resultcode": "-100",
                 "message": "카테고리가 비어있습니다."
             });
             return;
@@ -26,12 +27,7 @@ module.exports = async (req, res) => {
         });
         return;
     } catch (error) {
-        res.status(200).json({
-            "result": "FAIL",
-            "resultcode": "-1",
-            "message": `데이터베이스에서 오류가 발생하였습니다. (MariaDB Error Code: ${error.original.errno}`
-        });
-        console.log("LOG: FAIL: Fail to Invalid Category.\n");
-        console.log(error);
+        errors(res, error, "카테고리 목록");
+        return;
     };
 };

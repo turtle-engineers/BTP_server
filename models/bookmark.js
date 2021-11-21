@@ -16,8 +16,20 @@ module.exports = (sequelize, DataTypes) => {
     });
 
     Bookmark.associate = function (models) {
-        Bookmark.belongsTo(models.User);
-        Bookmark.belongsTo(models.StretchContents);
+        Bookmark.belongsTo(models.User, {
+            foreignKey: {
+                allowNull: false
+            },
+            onDelete: 'RESTRICT',
+            onUpdate: 'RESTRICT'
+        });
+        Bookmark.belongsTo(models.StretchContents, {
+            foreignKey: {
+                allowNull: false
+            },
+            onDelete: 'RESTRICT',
+            onUpdate: 'RESTRICT'
+        });
     }
 
     return Bookmark;

@@ -20,8 +20,20 @@ module.exports = (sequelize, DataTypes) => {
     });
 
     MyRoutine.associate = function (models) {
-        MyRoutine.belongsTo(models.User);
-        MyRoutine.hasMany(models.MyRoutineContents);
+        MyRoutine.belongsTo(models.User, {
+            foreignKey: {
+                allowNull: false
+            },
+            onDelete: 'RESTRICT',
+            onUpdate: 'RESTRICT'
+        });
+        MyRoutine.hasMany(models.MyRoutineContents, {
+            foreignKey: {
+                allowNull: false
+            },
+            onDelete: 'RESTRICT',
+            onUpdate: 'RESTRICT'
+        });
     }
 
     return MyRoutine;

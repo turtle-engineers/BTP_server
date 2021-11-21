@@ -24,8 +24,20 @@ module.exports = (sequelize, DataTypes) => {
     });
 
     PlayLog.associate = function (models) {
-        PlayLog.belongsTo(models.User);
-        PlayLog.belongsTo(models.StretchContents);
+        PlayLog.belongsTo(models.User, {
+            foreignKey: {
+                allowNull: false
+            },
+            onDelete: 'RESTRICT',
+            onUpdate: 'RESTRICT'
+        });
+        PlayLog.belongsTo(models.StretchContents, {
+            foreignKey: {
+                allowNull: false
+            },
+            onDelete: 'RESTRICT',
+            onUpdate: 'RESTRICT'
+        });
     }
 
     return PlayLog;
