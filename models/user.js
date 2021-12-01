@@ -27,14 +27,6 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING(10),
             allowNull: false
         },
-        age: {
-            type: DataTypes.INTEGER,
-            allowNull: true
-        },
-        job: {
-            type: DataTypes.STRING(10),
-            allowNull: true
-        },
         level: {
             type: DataTypes.INTEGER,
             allowNull: false,
@@ -95,6 +87,13 @@ module.exports = (sequelize, DataTypes) => {
             onUpdate: 'RESTRICT'
         });
         User.hasMany(models.ServiceLog, {
+            foreignKey: {
+                allowNull: false
+            },
+            onDelete: 'RESTRICT',
+            onUpdate: 'RESTRICT'
+        });
+        User.hasMany(models.TodayGoal, {
             foreignKey: {
                 allowNull: false
             },

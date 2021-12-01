@@ -76,6 +76,8 @@ app.use('/stretch/category', categoryRouter);
 app.use('/stretch/contents', contentsRouter);
 app.use('/bookmark', bookmarkRouter);
 
+app.use('/user',express.static('upload'));
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

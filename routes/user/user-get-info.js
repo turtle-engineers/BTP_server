@@ -21,19 +21,7 @@ module.exports = async (req, res) => {
         let mm = today.format('MM');
         let dd = today.format('DD');
         //  console.log(dd)
-        let userHistoryCalendar = await models.UserHistory.findAll({
-            where: {
-                userId: userInfo.id,
-                yyyy: yyyy,
-                mm: mm
-            },
-            attributes: ['dd']
-        });
-        let userHistoryArray = [];
-        for (let index = 0; index < userHistoryCalendar.length; index++) {
-            userHistoryArray.push(userHistoryCalendar[index].dataValues.dd)
-            
-        }
+        // 오늘의 달성도 조회 - 로그인 시 생성해서 그냥 find만 해도 될거 같음
         let userHistory = await models.UserHistory.findOrCreate({
             where: {
                 userId: userInfo.id,
@@ -48,6 +36,21 @@ module.exports = async (req, res) => {
                 dd: dd
             }
         });
+        // 달력정보 조회
+        let userHistoryCalendar = await models.UserHistory.findAll({
+            where: {
+                userId: userInfo.id,
+                yyyy: yyyy,
+                mm: mm
+            },
+            attributes: ['dd']
+        });
+        let userHistoryArray = [];
+        for (let index = 0; index < userHistoryCalendar.length; index++) {
+            userHistoryArray.push(userHistoryCalendar[index].dataValues.dd)
+            
+        }
+        
         userInfo.monthTimes = userHistoryCalendar.length;
         userInfo.dd = userHistoryArray;
         userInfo.todayTimes = userHistory[0].dataValues.times;
