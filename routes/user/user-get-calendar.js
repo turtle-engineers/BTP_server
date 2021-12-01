@@ -24,6 +24,7 @@ module.exports = async (req, res) => {
         return;
     }
     try {  
+        // 캘린더 월 넘기며 조회할 경우
         let calendarInfo = {};
         let userHistoryCalendar = await models.UserHistory.findAll({
             where: {

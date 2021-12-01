@@ -1,3 +1,4 @@
+const goal = require("./goal.js");
 const models = require("./index.js");
 
 module.exports = (sequelize, DataTypes) => {
@@ -9,10 +10,10 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
             autoIncrement: true
         },
-        title: {
-            type: DataTypes.STRING(20),
-            allowNull: false
-        },
+        // title: {
+        //     type: DataTypes.STRING(20),
+        //     allowNull: false,
+        // },
         finish: {
             type: DataTypes.BOOLEAN,
             allowNull: false
@@ -29,6 +30,13 @@ module.exports = (sequelize, DataTypes) => {
 
     TodayGoal.associate = function (models) {
         TodayGoal.belongsTo(models.User, {
+            foreignKey: {
+                allowNull: false
+            },
+            onDelete: 'RESTRICT',
+            onUpdate: 'RESTRICT'
+        });
+        TodayGoal.belongsTo(models.Goal, {
             foreignKey: {
                 allowNull: false
             },
