@@ -24,8 +24,12 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false
         },
         nickname: {
-            type: DataTypes.STRING(10),
+            type: DataTypes.STRING(20),
             allowNull: false
+        },
+        title: {
+            type: DataTypes.STRING(20),
+            allowNull: true
         },
         level: {
             type: DataTypes.INTEGER,

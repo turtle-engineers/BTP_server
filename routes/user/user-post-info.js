@@ -21,10 +21,12 @@ module.exports = async (req, res) => {
     };
     try {        
         // 유저 정보 수정
-        let userInfo = req.body.newNickname;
+        let newNickname = req.body.newNickname;
+        let newTitle = req.body.newTitle? req.body.newTitle:req.user.title;
         await models.User.update(
             {
-                nickname: req.body.newNickname
+                nickname: newNickname,
+                title: newTitle
             },
             {
                 where: {
