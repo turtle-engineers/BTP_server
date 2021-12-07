@@ -9,6 +9,10 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
             autoIncrement: true
         },
+        userId: {
+            type: DataTypes.INTEGER,
+            allowNull: false
+        },
         day: {
             type: DataTypes.INTEGER,
             allowNull: false
@@ -19,11 +23,11 @@ module.exports = (sequelize, DataTypes) => {
         },
         startTime: {
             type: DataTypes.STRING(4),
-            allowNull: false
+            allowNull: true
         },
         endTime: {
             type: DataTypes.STRING(4),
-            allowNull: false
+            allowNull: true
         }
     }, {
         // Other model options go here
