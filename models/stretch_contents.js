@@ -47,7 +47,7 @@ module.exports = (sequelize, DataTypes) => {
             onDelete: 'RESTRICT',
             onUpdate: 'RESTRICT'
         });
-        StretchContents.hasMany(models.MyRoutineContents, {
+        StretchContents.hasMany(models.MyRoutine, {
             foreignKey: {
                 allowNull: false
             },

@@ -9,10 +9,6 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
             autoIncrement: true
         },
-        userId: {
-            type: DataTypes.INTEGER,
-            allowNull: false
-        },
         day: {
             type: DataTypes.INTEGER,
             allowNull: false
@@ -27,6 +23,14 @@ module.exports = (sequelize, DataTypes) => {
         },
         endTime: {
             type: DataTypes.STRING(4),
+            allowNull: true
+        },
+        repeatTime: {
+            type: DataTypes.STRING(4),
+            allowNull: true
+        },
+        repeatCount: {
+            type: DataTypes.INTEGER,
             allowNull: true
         }
     }, {
