@@ -50,7 +50,13 @@ module.exports = async (req, res) => {
             userHistoryArray.push(userHistoryCalendar[index].dataValues.dd)
             
         }
-        
+        // 알람정보 조회
+        let stretchNotification = await models.StretchNotification.findOne({
+            where: {
+                userId: userInfo.id
+            }
+        });
+        userInfo.alarmValid = stretchNotification.dataValues.valid;
         userInfo.monthTimes = userHistoryCalendar.length;
         userInfo.dd = userHistoryArray;
         userInfo.todayTimes = userHistory[0].dataValues.times;

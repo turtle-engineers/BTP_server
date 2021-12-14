@@ -40,12 +40,7 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.INTEGER,
             allowNull: false,
             defaultValue: 0
-        },
-        alarm: {
-            type: DataTypes.BOOLEAN,
-            allowNull: false,
-            defaultValue: 1
-        },
+        }
     }, {
         // Other model options go here
         underscored: true,  // createdAt -> created_at (model to column name ONLY)
