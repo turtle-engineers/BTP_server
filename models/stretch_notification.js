@@ -9,6 +9,10 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
             autoIncrement: true
         },
+        userId: {
+            type: DataTypes.INTEGER,
+            allowNull: false
+        },
         day: {
             type: DataTypes.INTEGER,
             allowNull: false

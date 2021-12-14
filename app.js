@@ -4,6 +4,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const bodyParser = require('body-parser');
+const fileUpload = require('express-fileupload');
 const MySQLStore = require('express-mysql-session')(session);
 const logger = require('morgan');
 var cors = require('cors');
@@ -15,6 +16,13 @@ const config = require('./config/config.json')[env];
 var app = express();
 require('dotenv').config();
 const models = require("./models/index.js");
+
+
+// 파일 업로드 허용
+app.use(fileUpload({
+  createParentPath: true
+}));
+app.use('/profile',express.static('upload'));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -50,11 +58,11 @@ app.use(session({
 }));
 
 
-// const passport = require('./lib/passport')(app);
+const passport = require('./lib/passport')(app);
 
 const indexRouter = require('./routes/index');
 const userRouter = require('./routes/user/user');
-// const oauthRouter = require('./routes/oauth')(passport);
+const oauthRouter = require('./routes/oauth')(passport);
 const categoryRouter = require('./routes/stretch/category/category');
 const contentsRouter = require('./routes/stretch/contents/contents');
 const bookmarkRouter = require('./routes/bookmark/bookmark');
@@ -70,7 +78,7 @@ models.sequelize.sync().then( () => {
 });
 
 app.use('/', indexRouter);
-// app.use('/oauth', oauthRouter);
+app.use('/oauth', oauthRouter);
 app.use('/user', userRouter);
 app.use('/stretch/category', categoryRouter);
 app.use('/stretch/contents', contentsRouter);
@@ -78,7 +86,6 @@ app.use('/bookmark', bookmarkRouter);
 app.use('/my-routine', myRoutineRouter);
 app.use('/notification', notificationRouter);
 
-app.use('/user',express.static('upload'));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
