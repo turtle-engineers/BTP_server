@@ -9,8 +9,12 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
             autoIncrement: true
         },
-        title: {
-            type: DataTypes.STRING(20),
+        repeatCount: {
+            type: DataTypes.INTEGER,
+            allowNull: false
+        },
+        contentsOrder: {
+            type: DataTypes.INTEGER,
             allowNull: false
         }
     }, {
@@ -27,7 +31,7 @@ module.exports = (sequelize, DataTypes) => {
             onDelete: 'RESTRICT',
             onUpdate: 'RESTRICT'
         });
-        MyRoutine.hasMany(models.MyRoutineContents, {
+        MyRoutine.belongsTo(models.StretchContents, {
             foreignKey: {
                 allowNull: false
             },

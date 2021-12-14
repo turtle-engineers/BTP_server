@@ -50,16 +50,16 @@ app.use(session({
 }));
 
 
-const passport = require('./lib/passport')(app);
+// const passport = require('./lib/passport')(app);
 
 const indexRouter = require('./routes/index');
 const userRouter = require('./routes/user/user');
-const oauthRouter = require('./routes/oauth')(passport);
+// const oauthRouter = require('./routes/oauth')(passport);
 const categoryRouter = require('./routes/stretch/category/category');
 const contentsRouter = require('./routes/stretch/contents/contents');
 const bookmarkRouter = require('./routes/bookmark/bookmark');
-
-
+const myRoutineRouter = require('./routes/my-routine/my-routine');
+const notificationRouter = require('./routes/notification/notification');
 
 // Synchronizing all models at once //
 models.sequelize.sync().then( () => {
@@ -70,11 +70,13 @@ models.sequelize.sync().then( () => {
 });
 
 app.use('/', indexRouter);
-app.use('/oauth', oauthRouter);
+// app.use('/oauth', oauthRouter);
 app.use('/user', userRouter);
 app.use('/stretch/category', categoryRouter);
 app.use('/stretch/contents', contentsRouter);
 app.use('/bookmark', bookmarkRouter);
+app.use('/my-routine', myRoutineRouter);
+app.use('/notification', notificationRouter);
 
 app.use('/user',express.static('upload'));
 
