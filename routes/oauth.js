@@ -12,7 +12,7 @@ module.exports = function (passport) {
     }),
     (req, res) => {
       req.session.save(function () {
-        res.redirect("http://127.0.0.1:8080/LoginRedirect");
+        res.redirect("http://127.0.0.1:8080");
         return;
       });
     }
