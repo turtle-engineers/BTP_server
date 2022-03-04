@@ -28,16 +28,10 @@ app.use("/profile", express.static("upload"));
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "pug");
 app.use(
-  cors(
-    {
-      origin: "http://127.0.0.1:8080", // server의 url이 아닌, 요청하는 client의 url
-      credentials: true,
-    },
-    {
-      origin: "http://localhost:8080", // server의 url이 아닌, 요청하는 client의 url
-      credentials: true,
-    }
-  )
+  cors({
+    origin: ["http://127.0.0.1:8080", "http://localhost:8080"], // server의 url이 아닌, 요청하는 client의 url
+    credentials: true,
+  })
 );
 app.use(logger("dev"));
 app.use(express.json());
@@ -48,7 +42,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(
   session({
-    resave: false,
+    resave: true,
     saveUninitialized: true,
     secret: "secret code",
     store: new MySQLStore({
