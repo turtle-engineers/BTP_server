@@ -24,6 +24,8 @@ app.use(
 );
 app.use("/profile", express.static("upload"));
 
+app.use("/stretchingFiles", express.static("stretchingFiles"));
+
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "pug");
