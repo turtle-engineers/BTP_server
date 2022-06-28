@@ -22,6 +22,7 @@ module.exports = async (req, res) => {
         [Sequelize.col("StretchContent.title"), "title"],
         [Sequelize.col("StretchContent.play_time"), "playTime"],
         [Sequelize.col("StretchContent.image_url"), "imageUrl"],
+        [Sequelize.col("StretchContent.stretch_category_id"), "stretchCategoryId"],
       ],
       where: {
         UserId: req.user.id,
