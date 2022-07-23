@@ -13,7 +13,7 @@ module.exports = async (req, res) => {
 
     try {
         const results = await models.StretchContents.findAll({
-            attributes: ['id', 'title'],
+            attributes: ['id', 'title', 'image_url', 'video_url'],
             where: {
                 StretchCategoryId: req.query.cid,
                 valid: true
