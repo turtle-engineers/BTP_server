@@ -19,9 +19,12 @@ module.exports = async (req, res) => {
         "contentsOrder",
         "StretchContentId",
         "repeatCount",
+        [Sequelize.col("StretchContent.id"), "id"],
         [Sequelize.col("StretchContent.title"), "title"],
+        [Sequelize.col("StretchContent.description"), "description"],
         [Sequelize.col("StretchContent.play_time"), "playTime"],
-        [Sequelize.col("StretchContent.image_url"), "imageUrl"],
+        [Sequelize.col("StretchContent.image_url"), "imgUrl"],
+        [Sequelize.col("StretchContent.video_url"), "videoUrl"],
         [Sequelize.col("StretchContent.stretch_category_id"), "stretchCategoryId"],
       ],
       where: {
