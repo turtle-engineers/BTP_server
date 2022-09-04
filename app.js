@@ -31,7 +31,7 @@ app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "pug");
 app.use(
   cors({
-    origin: ["http://127.0.0.1:8080", "http://localhost:8080"], // server의 url이 아닌, 요청하는 client의 url
+    origin: [config.redirect, "http://localhost:8080"], // server의 url이 아닌, 요청하는 client의 url
     credentials: true,
   })
 );

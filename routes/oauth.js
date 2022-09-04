@@ -1,6 +1,8 @@
 var express = require("express");
 var router = express.Router();
 var session = require("express-session");
+const env = process.env.NODE_ENV || "development";
+const config = require("../config/config.json")[env];
 
 module.exports = function (passport) {
   router.get("/kakao", passport.authenticate("kakao"));
@@ -8,11 +10,11 @@ module.exports = function (passport) {
   router.get(
     "/kakao/callback",
     passport.authenticate("kakao", {
-      failureRedirect: "http://127.0.0.1:8080/Login",
+      failureRedirect: config.redirect + "/Login",
     }),
     (req, res) => {
       req.session.save(function () {
-        res.redirect("http://127.0.0.1:8080");
+        res.redirect(config.redirect);
         return;
       });
     }
