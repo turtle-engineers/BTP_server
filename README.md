@@ -1,6 +1,12 @@
 # BTP_server
 node + express server
 
+**220905**
+> 운영/로컬 별 start scripts를 재작성 하였습니다. 
+> config는 gitignore하고 팀내 공유 하였으니 개인별로 셋팅 바랍니다.
+> 운영 서버는 npm run prod 로 start 합니다.
+
+
 **211202**
 > upload 폴더가 생성되었습니다.   
 > 정적으로 파일을 서비스 할 수 있습니다.   
